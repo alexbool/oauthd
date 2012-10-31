@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sec="http://www.springframework.org/schema/security" xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+    xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <sec:authentication-manager id="clientAuthenticationManager">
+        <sec:authentication-provider user-service-ref="clientDetailsUserService" />
+    </sec:authentication-manager>
+
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider>
+            <sec:user-service>
+                <sec:user name="alexbool" password="changeme" authorities="ROLE_USER" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
+    <oauth2:client-details-service id="clientDetails">
+        <oauth2:client client-id="greenpas-api" authorized-grant-types="authorization_code,refresh_token,implicit,password"
+            secret="123" redirect-uri="http://greenpas.ru" authorities="ROLE_CLIENT" />
+    </oauth2:client-details-service>
+
+    <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+        <constructor-arg ref="clientDetails" />
+    </bean>
+
+    <bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
+
+    <bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+        <property name="tokenStore" ref="tokenStore" />
+        <property name="supportRefreshToken" value="true" />
+    </bean>
+
+    <bean id="forbiddenEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+    <bean id="oauthAccessDeniedHandler" class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
+    <bean id="oauthAuthenticationEntryPoint" class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint" />
+
+    <sec:http pattern="/oauth/authorize" create-session="stateless" authentication-manager-ref="authenticationManager"
+        entry-point-ref="forbiddenEntryPoint">
+        <sec:intercept-url pattern="/oauth/authorize" access="ROLE_USER" />
+        <sec:anonymous enabled="false" />
+        <!-- Noone is allowed here, because we are not supporting anything except password grant -->
+        <!-- <sec:http-basic entry-point-ref="forbiddenEntryPoint" /> -->
+        <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
+    </sec:http>
+
+    <sec:http pattern="/oauth/token" create-session="stateless" authentication-manager-ref="clientAuthenticationManager"
+        entry-point-ref="oauthAuthenticationEntryPoint">
+        <sec:intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+        <sec:anonymous enabled="false" />
+        <sec:http-basic entry-point-ref="oauthAuthenticationEntryPoint" />
+        <!-- include this only if you need to authenticate clients via request parameters -->
+        <!-- <sec:custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" /> -->
+        <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
+    </sec:http>
+</beans>
