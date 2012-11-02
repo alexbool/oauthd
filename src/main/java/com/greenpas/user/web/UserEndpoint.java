@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.greenpas.user.UserRepository;
 
@@ -23,7 +24,9 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "check-username-free", method = RequestMethod.GET)
-    public CheckResult checkUsernameFree(@RequestParam(required = true) String username) {
+    public @ResponseBody CheckResult checkUsernameFree(
+            @RequestParam(required = true) String username)
+    {
         return new CheckResult(userRepository.exists(username));
     }
 }
