@@ -3,7 +3,6 @@ package com.greenpas.user;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -41,16 +40,14 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public void updatePassword(String username, String password) {
         UserDetails user = findOrThrow(username);
-        UserDetails newUser = new User(username, password, user.isEnabled(), user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
+        UserDetails newUser = new User(username, password, !user.isEnabled(), user.getAuthorities());
         users.put(username, newUser);
     }
 
     @Override
     public void saveAuthorities(String username, Collection<? extends GrantedAuthority> authorities) {
         UserDetails user = findOrThrow(username);
-        UserDetails newUser = new User(username, user.getPassword(), user.isEnabled(), user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(), user.isAccountNonLocked(), authorities);
+        UserDetails newUser = new User(username, user.getPassword(), !user.isEnabled(), authorities);
         users.put(username, newUser);
     }
 
