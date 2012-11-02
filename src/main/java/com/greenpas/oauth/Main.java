@@ -22,6 +22,10 @@ public class Main {
 		ServletHolder oauth2Servlet = new ServletHolder("oauth2", new DispatcherServlet());
 		oauth2Servlet.setInitParameter("contextConfigLocation", "classpath:oauth2-servlet.xml");
 		ctx.addServlet(oauth2Servlet, "/*");
+		
+		ServletHolder userServlet = new ServletHolder("user", new DispatcherServlet());
+		userServlet.setInitParameter("contextConfigLocation", "classpath:user-servlet.xml");
+		ctx.addServlet(userServlet, "/user/*");
 
 		ctx.addFilter(new FilterHolder(new DelegatingFilterProxy("springSecurityFilterChain")), "/*",
 				EnumSet.of(DispatcherType.REQUEST));
