@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:sec="http://www.springframework.org/schema/security"
-    xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+    xmlns:sec="http://www.springframework.org/schema/security" xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
     xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
@@ -14,12 +13,25 @@
         <sec:authentication-provider user-service-ref="clientDetailsUserService" />
     </sec:authentication-manager>
 
+    <bean id="userRepository" class="com.greenpas.user.InMemoryUserRepository">
+        <constructor-arg>
+            <list>
+                <bean class="com.greenpas.user.User">
+                    <constructor-arg name="username" value="alexbool" />
+                    <constructor-arg name="password" value="changeme" />
+                    <constructor-arg name="deleted" value="false" />
+                    <constructor-arg name="authorities">
+                        <list>
+                            <value>ROLE_USER</value>
+                        </list>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
     <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider>
-            <sec:user-service>
-                <sec:user name="alexbool" password="changeme" authorities="ROLE_USER" />
-            </sec:user-service>
-        </sec:authentication-provider>
+        <sec:authentication-provider user-service-ref="userRepository" />
     </sec:authentication-manager>
 
     <oauth2:client-details-service id="clientDetails">
