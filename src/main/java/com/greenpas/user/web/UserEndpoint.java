@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.greenpas.user.UserRepository;
 
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserEndpoint {
 
     @Autowired
@@ -23,7 +23,7 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "check-username-free", method = RequestMethod.GET)
-    public CheckResult checkUsernameFree(@RequestParam String username) {
+    public CheckResult checkUsernameFree(@RequestParam(required = true) String username) {
         return new CheckResult(userRepository.exists(username));
     }
 }
