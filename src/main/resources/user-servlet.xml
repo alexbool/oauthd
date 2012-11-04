@@ -7,6 +7,12 @@
 
     <context:annotation-config />
     <mvc:annotation-driven />
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="useTrailingSlashMatch" value="true" />
+    </bean>
+
     <bean class="com.greenpas.util.ExceptionResolver" />
+
     <bean class="com.greenpas.user.web.UserEndpoint" />
 </beans>
