@@ -7,5 +7,6 @@
 
     <context:annotation-config />
     <mvc:annotation-driven />
+    <bean class="com.greenpas.util.ExceptionResolver" />
     <bean class="com.greenpas.user.web.UserEndpoint" />
 </beans>
