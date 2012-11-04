@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,12 @@ public class UserEndpoint {
             @RequestParam(required = true) String username)
     {
         return new CheckResult(!userRepository.exists(username));
+    }
+
+    @RequestMapping(value = "info", method = RequestMethod.GET)
+    public @ResponseBody UserInfo userInfo(Principal principal) {
+        Authentication auth = (Authentication) principal;
+        return new UserInfo(auth.getName(), auth.getAuthorities());
     }
 
     @ResponseStatus(HttpStatus.OK)
