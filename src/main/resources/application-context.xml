@@ -74,7 +74,7 @@
     <sec:http pattern="/user/(?!(register|check-username-free))" request-matcher="regex" entry-point-ref="oauthAuthenticationEntryPoint"
         create-session="stateless">
         <sec:anonymous enabled="false" />
-        <sec:intercept-url pattern="/user/**" access="" />
+        <sec:intercept-url pattern="/user/*" access="IS_AUTHENTICATED_FULLY" />
         <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
     </sec:http>
 </beans>
