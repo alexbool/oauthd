@@ -1,5 +1,6 @@
 package com.greenpas.user.web;
 
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.greenpas.user.User;
 import com.greenpas.user.UserRepository;
 
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -20,7 +22,8 @@ public class UserEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void register(@RequestBody RegisterUserCommand cmd) {
-        // TODO
+        userRepository.save(
+                new User(cmd.getUsername(), cmd.getPassword(), false, Arrays.asList(new String[] { "ROLE_USER" })));
     }
 
     @RequestMapping(value = "check-username-free", method = RequestMethod.GET)
