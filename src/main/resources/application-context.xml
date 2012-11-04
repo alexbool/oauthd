@@ -68,4 +68,13 @@
         <!-- <sec:custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" /> -->
         <sec:access-denied-handler ref="oauthAccessDeniedHandler" />
     </sec:http>
+
+    <oauth2:resource-server id="oauth2ProviderFilter" token-services-ref="tokenServices" />
+
+    <sec:http pattern="/user/(?!(register|check-username-free))" request-matcher="regex" entry-point-ref="oauthAuthenticationEntryPoint"
+        create-session="stateless">
+        <sec:anonymous enabled="false" />
+        <sec:intercept-url pattern="/user/**" access="" />
+        <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
+    </sec:http>
 </beans>
