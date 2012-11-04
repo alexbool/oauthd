@@ -42,6 +42,12 @@ public class UserEndpoint {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "change-password", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void changePassword(@RequestBody ChangePasswordCommand cmd, Principal principal) {
+        userRepository.updatePassword(principal.getName(), cmd.getPassword());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(Principal principal) {
         userRepository.delete(principal.getName());
