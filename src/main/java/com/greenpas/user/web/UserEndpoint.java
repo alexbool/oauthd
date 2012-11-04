@@ -31,7 +31,7 @@ public class UserEndpoint {
     public @ResponseBody CheckResult checkUsernameFree(
             @RequestParam(required = true) String username)
     {
-        return new CheckResult(userRepository.exists(username));
+        return new CheckResult(!userRepository.exists(username));
     }
 
     @ResponseStatus(HttpStatus.OK)
