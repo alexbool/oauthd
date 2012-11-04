@@ -1,5 +1,6 @@
 package com.greenpas.user.web;
 
+import java.security.Principal;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,11 @@ public class UserEndpoint {
             @RequestParam(required = true) String username)
     {
         return new CheckResult(userRepository.exists(username));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void delete(Principal principal) {
+        userRepository.delete(principal.getName());
     }
 }
