@@ -31,7 +31,7 @@ public class InMemoryUserRepository implements UserRepository {
 
     @Override
     public void save(UserDetails user) {
-        if (users.contains(user.getUsername())) {
+        if (users.containsKey(user.getUsername())) {
             throw new UsernameAlreadyExistsException(user.getUsername());
         }
         users.put(user.getUsername(), user);
