@@ -11,4 +11,5 @@
         init-method="createSchema" />
 
     <bean id="userRepository" class="com.greenpas.user.jdbc.JdbcUserRepository" p:dataSource-ref="dataSource" />
+    <bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.JdbcTokenStore" c:dataSource-ref="dataSource" />
 </beans>
