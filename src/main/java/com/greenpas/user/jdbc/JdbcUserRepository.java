@@ -19,7 +19,7 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
 
     private static final String USERS_TABLE_DDL =
             "CREATE TABLE users (" +
-            "username VARCHAR(255) NOT NULL, " +
+            "username VARCHAR(255) NOT NULL PRIMARY KEY, " +
             "password VARCHAR(255) NOT NULL, " +
             "authorities VARCHAR(1024) NOT NULL, " +
             "deleted TINYINT)";
