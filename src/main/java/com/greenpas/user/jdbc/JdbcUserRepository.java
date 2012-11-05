@@ -17,13 +17,6 @@ import com.greenpas.user.UsernameAlreadyExistsException;
 
 public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository {
 
-    private static final String USERS_TABLE_DDL =
-            "CREATE TABLE users (" +
-            "username VARCHAR(255) NOT NULL PRIMARY KEY, " +
-            "password VARCHAR(255) NOT NULL, " +
-            "authorities VARCHAR(1024) NOT NULL, " +
-            "deleted TINYINT)";
-
     @Override
     public boolean exists(String username) {
         return getJdbcTemplate().queryForInt("SELECT COUNT(*) FROM users WHERE username = ?", username) == 1;
@@ -86,9 +79,5 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
             builder.append(",");
         }
         return builder.toString();
-    }
-
-    public void createTable() {
-        getJdbcTemplate().execute(USERS_TABLE_DDL);
     }
 }
