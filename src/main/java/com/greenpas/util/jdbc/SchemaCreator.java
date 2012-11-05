@@ -26,13 +26,15 @@ public class SchemaCreator extends JdbcDaoSupport {
             s.useDelimiter("\\A");
             sql = s.hasNext() ? s.next() : null;
         }
-        if (sql == null)
+        if (sql == null) {
+            logger.info("No SQL to execute");
             return;
+        }
         try {
             getJdbcTemplate().execute(sql);
         }
         catch (DataAccessException ex) {
-            logger.info("createSchema threw exception; ignoring: {}", ex.getMessage());
+            logger.info("Create schema threw {}, assuming tables are already created", ex.getClass().getName());
         }
     }
 }
