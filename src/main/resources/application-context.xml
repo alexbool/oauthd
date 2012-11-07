@@ -7,6 +7,9 @@
 
     <import resource="classpath:jdbc-context.xml" />
 
+    <bean id="jettyFactory" class="com.greenpas.support.jetty.JettyFactory" />
+    <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" />
+
     <sec:authentication-manager id="clientAuthenticationManager">
         <sec:authentication-provider user-service-ref="clientDetailsUserService" />
     </sec:authentication-manager>
@@ -54,8 +57,8 @@
 
     <oauth2:resource-server id="oauth2ProviderFilter" token-services-ref="tokenServices" />
 
-    <sec:http pattern="/user/(?!(register|check-username-free))(.*)" request-matcher="regex" entry-point-ref="oauthAuthenticationEntryPoint"
-        create-session="stateless">
+    <sec:http pattern="/user/(?!(register|check-username-free))(.*)" request-matcher="regex"
+        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
         <sec:anonymous enabled="false" />
         <sec:intercept-url pattern="/user/.*" access="IS_AUTHENTICATED_FULLY" />
         <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
