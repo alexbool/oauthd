@@ -1,5 +1,6 @@
 package com.greenpas.support.jetty;
 
+import java.net.InetSocketAddress;
 import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import org.eclipse.jetty.server.Server;
@@ -18,8 +19,8 @@ public class JettyFactory implements ApplicationContextAware {
 
     private WebApplicationContext applicationContext;
     
-    public Server jetty() {
-        Server server = new Server(8081);
+    public Server jetty(String bindAddress, int bindPort) {
+        Server server = new Server(new InetSocketAddress(bindAddress, bindPort));
         ServletContextHandler ctx = new ServletContextHandler(null, "/");
 
         XmlWebApplicationContext oauth2Context = new XmlWebApplicationContext();

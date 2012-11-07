@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:sec="http://www.springframework.org/schema/security" xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
-    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:c="http://www.springframework.org/schema/c"
     xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,7 +13,8 @@
         location="classpath:application.properties,file:///etc/greenpas-oauth/greenpas-oauth.properties" />
 
     <bean id="jettyFactory" class="com.greenpas.support.jetty.JettyFactory" />
-    <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" />
+    <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" c:bindAddress="${server.bind.ip}"
+        c:bindPort="${server.bind.port}" />
 
     <sec:authentication-manager id="clientAuthenticationManager">
         <sec:authentication-provider user-service-ref="clientDetailsUserService" />
