@@ -165,6 +165,14 @@
                                         <filemode>755</filemode>
                                     </mapper>
                                 </data>
+                                <data>
+                                    <src>${project.basedir}/src/deb/config/</src>
+                                    <type>directory</type>
+                                    <mapper>
+                                        <type>perm</type>
+                                        <prefix>/etc/${project.artifactId}</prefix>
+                                    </mapper>
+                                </data>
                             </dataSet>
                         </configuration>
                     </execution>

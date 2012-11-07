@@ -21,9 +21,9 @@ case "$1" in
     chmod 755 /var/log/greenpas-oauth /var/lib/greenpas-oauth
 
     # configuration files should not be modifiable by greenpas-oauth user, as this can be a security issue
-    # chown -Rh root:root /etc/greenpas-oauth/*
-    # chmod 755 /etc/greenpas-oauth
-    # chmod 644 /etc/greenpas-oauth/*
+    chown -Rh root:root /etc/greenpas-oauth/*
+    chmod 755 /etc/greenpas-oauth
+    chmod 644 /etc/greenpas-oauth/*
     ;;
 esac
 
