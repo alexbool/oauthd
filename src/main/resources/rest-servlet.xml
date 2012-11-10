@@ -28,4 +28,5 @@
     <bean class="com.alexbool.util.ExceptionResolver" />
 
     <bean class="com.alexbool.user.web.UserEndpoint" />
+    <bean class="com.alexbool.client.web.ClientEndpoint" />
 </beans>

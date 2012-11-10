@@ -24,10 +24,7 @@
         <sec:authentication-provider user-service-ref="userRepository" />
     </sec:authentication-manager>
 
-    <oauth2:client-details-service id="clientDetails">
-        <oauth2:client client-id="greenpas-api" authorized-grant-types="authorization_code,refresh_token,implicit,password"
-            secret="123" redirect-uri="http://greenpas.ru" authorities="client_general" />
-    </oauth2:client-details-service>
+    <bean id="clientDetails" class="org.springframework.security.oauth2.provider.JdbcClientDetailsService" c:dataSource-ref="dataSource" />
 
     <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
         <constructor-arg ref="clientDetails" />
@@ -68,5 +65,12 @@
         <sec:anonymous enabled="false" />
         <sec:intercept-url pattern="/user/.*" access="IS_AUTHENTICATED_FULLY" />
         <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
+    </sec:http>
+
+    <sec:http pattern="/client/.*" request-matcher="regex" authentication-manager-ref="clientAuthenticationManager"
+        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
+        <sec:anonymous enabled="false" />
+        <sec:intercept-url pattern="/client/.*" access="IS_AUTHENTICATED_FULLY" />
+        <sec:http-basic entry-point-ref="forbiddenEntryPoint" />
     </sec:http>
 </beans>
