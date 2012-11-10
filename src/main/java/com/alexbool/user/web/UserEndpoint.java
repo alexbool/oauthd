@@ -35,7 +35,7 @@ public class UserEndpoint {
         return new CheckResult(!userRepository.exists(username));
     }
 
-    @RequestMapping(value = "info", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody UserInfo userInfo(Principal principal) {
         Authentication auth = (Authentication) principal;
         return new UserInfo(auth.getName(), auth.getAuthorities());
