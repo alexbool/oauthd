@@ -37,11 +37,11 @@ curl --header "Authorization: Bearer <your token here>" http://localhost:8081/us
 
 ### Change password
 ```
-curl -X PUT \
+curl -X PATCH \
     --header "Authorization: Bearer <your token here>" \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "password" : "<new_password>" }' \
-    http://localhost:8081/user/password
+    http://localhost:8081/user
 ```
 
 ### Delete user
