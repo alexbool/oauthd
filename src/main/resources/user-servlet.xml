@@ -12,7 +12,7 @@
         <property name="useTrailingSlashMatch" value="true" />
     </bean>
 
-    <bean class="com.greenpas.util.ExceptionResolver" />
+    <bean class="com.alexbool.util.ExceptionResolver" />
 
-    <bean class="com.greenpas.user.web.UserEndpoint" />
+    <bean class="com.alexbool.user.web.UserEndpoint" />
 </beans>

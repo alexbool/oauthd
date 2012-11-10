@@ -1,4 +1,4 @@
-Package: greenpas-oauth
+Package: oauthd
 Version: [[version]]
 Section: web
 Priority: optional

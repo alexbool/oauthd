@@ -1,4 +1,4 @@
-package com.greenpas.user.web;
+package com.alexbool.user.web;
 
 import java.util.ArrayList;
 import java.util.Collection;

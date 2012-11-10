@@ -1,4 +1,4 @@
-package com.greenpas.user.jdbc;
+package com.alexbool.user.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +11,9 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.greenpas.user.User;
-import com.greenpas.user.UserRepository;
-import com.greenpas.user.UsernameAlreadyExistsException;
+import com.alexbool.user.User;
+import com.alexbool.user.UserRepository;
+import com.alexbool.user.UsernameAlreadyExistsException;
 
 public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository {
 

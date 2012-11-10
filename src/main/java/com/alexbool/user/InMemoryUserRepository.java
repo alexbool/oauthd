@@ -1,4 +1,4 @@
-package com.greenpas.user;
+package com.alexbool.user;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;

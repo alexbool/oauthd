@@ -1,4 +1,4 @@
-package com.greenpas.user;
+package com.alexbool.user;
 
 public class UsernameAlreadyExistsException extends IllegalArgumentException {
 

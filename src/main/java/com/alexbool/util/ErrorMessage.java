@@ -1,4 +1,4 @@
-package com.greenpas.util;
+package com.alexbool.util;
 
 public class ErrorMessage {
 

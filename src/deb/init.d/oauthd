@@ -1,12 +1,12 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          greenpas-oauth
+# Provides:          oauthd
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Starts greenpas-oauth
-# Description:       Starts greenpas-oauth using start-stop-daemon
+# Short-Description: Starts oauthd
+# Description:       Starts oauthd using start-stop-daemon
 ### END INIT INFO
 
 # Author: Alexander Bulaev <aleks.bulaev@gmail.com>
@@ -19,8 +19,8 @@
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Greenpas OAuth Server"
-NAME=greenpas-oauth
-DAEMON=/usr/share/greenpas-oauth/bin/$NAME
+NAME=oauthd
+DAEMON=/usr/share/oauthd/bin/$NAME
 DAEMON_ARGS=""
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME

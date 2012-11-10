@@ -7,9 +7,9 @@
     <util:properties id="poolProperties" location="classpath:pool.properties" />
     <bean id="dataSourceFactory" class="org.apache.tomcat.jdbc.pool.DataSourceFactory" />
     <bean id="dataSource" factory-bean="dataSourceFactory" factory-method="createDataSource" c:properties-ref="poolProperties" />
-    <bean class="com.greenpas.util.jdbc.SchemaCreator" c:dataSource-ref="dataSource" c:schemaScriptFile="classpath:sql/oauth-schema.sql"
+    <bean class="com.alexbool.util.jdbc.SchemaCreator" c:dataSource-ref="dataSource" c:schemaScriptFile="classpath:sql/oauth-schema.sql"
         init-method="createSchema" />
 
-    <bean id="userRepository" class="com.greenpas.user.jdbc.JdbcUserRepository" p:dataSource-ref="dataSource" />
+    <bean id="userRepository" class="com.alexbool.user.jdbc.JdbcUserRepository" p:dataSource-ref="dataSource" />
     <bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.JdbcTokenStore" c:dataSource-ref="dataSource" />
 </beans>

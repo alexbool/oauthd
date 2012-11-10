@@ -1,2 +1,2 @@
-/etc/init.d/greenpas-oauth
-/etc/greenpas-oauth/greenpas-oauth.properties
+/etc/init.d/oauthd
+/etc/oauthd/oauthd.properties

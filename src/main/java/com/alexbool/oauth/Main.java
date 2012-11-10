@@ -1,4 +1,4 @@
-package com.greenpas.oauth;
+package com.alexbool.oauth;
 
 import org.eclipse.jetty.server.Server;
 import org.springframework.web.context.support.XmlWebApplicationContext;

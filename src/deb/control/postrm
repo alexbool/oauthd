@@ -4,18 +4,18 @@ set -e
 case "$1" in
     remove)
         # Remove logs
-        rm -rf /var/log/greenpas-oauth
+        rm -rf /var/log/oauthd
         
         # remove **only** empty data dir
-        # rmdir -p --ignore-fail-on-non-empty /var/lib/greenpas-oauth
+        # rmdir -p --ignore-fail-on-non-empty /var/lib/oauthd
     ;;
 
     purge)
         # Remove service
-        update-rc.d greenpas-oauth remove >/dev/null || true
+        update-rc.d oauthd remove >/dev/null || true
     
         # Remove logs and data
-        # rm -rf /var/log/greenpas-oauth /var/lib/greenpas-oauth
+        # rm -rf /var/log/oauthd /var/lib/oauthd
 
         # Remove user/group
         deluser oauth || true

@@ -1,10 +1,10 @@
 #!/bin/sh
 set -e
 
-if [ -x "/etc/init.d/greenpas-oauth" ]; then
+if [ -x "/etc/init.d/oauthd" ]; then
     if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
-        invoke-rc.d greenpas-oauth stop || true
+        invoke-rc.d oauthd stop || true
     else
-        /etc/init.d/greenpas-oauth stop || true
+        /etc/init.d/oauthd stop || true
     fi
 fi

@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-sudo dpkg -i greenpas-oauth_1.0.0.deb
+sudo dpkg -i oauthd_1.0.0.deb
 ```
 
 ## OAuth Services

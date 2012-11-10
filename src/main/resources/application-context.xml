@@ -10,9 +10,9 @@
     <import resource="classpath:jdbc-context.xml" />
 
     <context:property-placeholder ignore-resource-not-found="true" system-properties-mode="OVERRIDE"
-        location="classpath:application.properties,file:///etc/greenpas-oauth/greenpas-oauth.properties" />
+        location="classpath:application.properties,file:///etc/oauthd/oauthd.properties" />
 
-    <bean id="jettyFactory" class="com.greenpas.support.jetty.JettyFactory" />
+    <bean id="jettyFactory" class="com.alexbool.support.jetty.JettyFactory" />
     <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" c:bindAddress="${server.bind.ip}"
         c:bindPort="${server.bind.port}" />
 

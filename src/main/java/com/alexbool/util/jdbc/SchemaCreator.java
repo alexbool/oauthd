@@ -1,4 +1,4 @@
-package com.greenpas.util.jdbc;
+package com.alexbool.util.jdbc;
 
 import java.io.IOException;
 import java.util.Scanner;

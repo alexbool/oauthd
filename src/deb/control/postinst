@@ -3,35 +3,35 @@ set -e
 
 case "$1" in
     configure)
-    [ -f /etc/default/greenpas-oauth ] && . /etc/default/greenpas-oauth
+    [ -f /etc/default/oauthd ] && . /etc/default/oauthd
     [ -z "$OAUTH_USER" ] && OAUTH_USER="oauth"
     [ -z "$OAUTH_GROUP" ] && OAUTH_GROUP="oauth"
     if ! getent group "$OAUTH_GROUP" > /dev/null 2>&1 ; then
         addgroup --system "$OAUTH_GROUP" --quiet
     fi
     if ! id $OAUTH_USER > /dev/null 2>&1 ; then
-        adduser --system --home /usr/share/greenpas-oauth --no-create-home \
+        adduser --system --home /usr/share/oauthd --no-create-home \
         --ingroup "$OAUTH_GROUP" --disabled-password --shell /bin/false \
         "$OAUTH_USER"
     fi
 
-    # Set user permissions on /var/log/greenpas-oauth and /var/lib/greenpas-oauth
-    mkdir -p /var/log/greenpas-oauth /var/lib/greenpas-oauth
-    chown -R $OAUTH_USER:$OAUTH_GROUP /var/log/greenpas-oauth /var/lib/greenpas-oauth
-    chmod 755 /var/log/greenpas-oauth /var/lib/greenpas-oauth
+    # Set user permissions on /var/log/oauthd and /var/lib/oauthd
+    mkdir -p /var/log/oauthd /var/lib/oauthd
+    chown -R $OAUTH_USER:$OAUTH_GROUP /var/log/oauthd /var/lib/oauthd
+    chmod 755 /var/log/oauthd /var/lib/oauthd
 
-    # configuration files should not be modifiable by greenpas-oauth user, as this can be a security issue
-    chown -Rh root:root /etc/greenpas-oauth/*
-    chmod 755 /etc/greenpas-oauth
-    chmod 644 /etc/greenpas-oauth/*
+    # configuration files should not be modifiable by oauthd user, as this can be a security issue
+    chown -Rh root:root /etc/oauthd/*
+    chmod 755 /etc/oauthd
+    chmod 644 /etc/oauthd/*
     ;;
 esac
 
-if [ -x "/etc/init.d/greenpas-oauth" ]; then
-    update-rc.d greenpas-oauth defaults 95 10 >/dev/null
+if [ -x "/etc/init.d/oauthd" ]; then
+    update-rc.d oauthd defaults 95 10 >/dev/null
     if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
-        invoke-rc.d greenpas-oauth start || true
+        invoke-rc.d oauthd start || true
     else
-        /etc/init.d/greenpas-oauth start || true
+        /etc/init.d/oauthd start || true
     fi
 fi

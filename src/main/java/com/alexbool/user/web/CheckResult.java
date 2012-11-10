@@ -1,4 +1,4 @@
-package com.greenpas.user.web;
+package com.alexbool.user.web;
 
 public class CheckResult {
 
