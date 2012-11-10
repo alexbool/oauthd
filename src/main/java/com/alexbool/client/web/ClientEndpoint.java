@@ -33,7 +33,7 @@ public class ClientEndpoint {
         }
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(Principal principal) {
         try {

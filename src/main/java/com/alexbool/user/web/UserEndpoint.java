@@ -41,13 +41,13 @@ public class UserEndpoint {
         return new UserInfo(auth.getName(), auth.getAuthorities());
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void changePassword(@RequestBody ChangePasswordCommand cmd, Principal principal) {
         userRepository.updatePassword(principal.getName(), cmd.getPassword());
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete(Principal principal) {
         userRepository.delete(principal.getName());
