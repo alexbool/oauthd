@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.alexbool.user.User;
 import com.alexbool.user.UserRepository;
 
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserEndpoint {
 
     @Autowired

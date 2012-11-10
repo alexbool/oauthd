@@ -23,18 +23,12 @@ public class JettyFactory implements ApplicationContextAware {
         Server server = new Server(new InetSocketAddress(bindAddress, bindPort));
         ServletContextHandler ctx = new ServletContextHandler(null, "/");
 
-        XmlWebApplicationContext oauth2Context = new XmlWebApplicationContext();
-        oauth2Context.setParent(applicationContext);
-        oauth2Context.setConfigLocation("classpath:oauth2-servlet.xml");
-        ServletHolder oauth2Servlet = new ServletHolder("oauth2", new DispatcherServlet(oauth2Context));
-        ctx.addServlet(oauth2Servlet, "/*");
+        XmlWebApplicationContext restContext = new XmlWebApplicationContext();
+        restContext.setParent(applicationContext);
+        restContext.setConfigLocation("classpath:rest-servlet.xml");
+        ServletHolder restServlet = new ServletHolder("rest", new DispatcherServlet(restContext));
+        ctx.addServlet(restServlet, "/*");
         
-        XmlWebApplicationContext userContext = new XmlWebApplicationContext();
-        userContext.setParent(applicationContext);
-        userContext.setConfigLocation("classpath:user-servlet.xml");
-        ServletHolder userServlet = new ServletHolder("user", new DispatcherServlet(userContext));
-        ctx.addServlet(userServlet, "/user/*");
-
         ctx.addFilter(new FilterHolder(new DelegatingFilterProxy("springSecurityFilterChain", applicationContext)), "/*",
                 EnumSet.of(DispatcherType.REQUEST));
 
