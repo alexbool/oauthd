@@ -25,6 +25,7 @@ public class ClientEndpoint {
     public void register(@RequestBody RegisterClientCommand cmd) {
         BaseClientDetails client = new BaseClientDetails(cmd.getClientId(), "", "",
                 "authorization_code,refresh_token,implicit,password", "client_general");
+        client.setClientSecret(cmd.getClientSecret());
         try {
             clientRegistrationService.addClientDetails(client);
         } catch (ClientAlreadyExistsException ex) {
