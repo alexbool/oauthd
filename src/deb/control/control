@@ -5,4 +5,4 @@ Priority: optional
 Architecture: all
 Depends: libc6, adduser, java7-runtime-headless | java6-runtime-headless | java7-runtime | java6-runtime
 Maintainer: Alexander Bulaev <aleks.bulaev@gmail.com>
-Description: Greenpas OAuth Server
+Description: Simple OAuth Server
