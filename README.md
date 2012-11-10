@@ -50,3 +50,19 @@ curl -X DELETE \
     --header "Authorization: Bearer <your token here>" \
     http://localhost:8081/user
 ```
+
+## Client Management Services
+### Register new client
+```
+curl -X POST \
+    --header "Content-Type: application/json;charset=UTF-8" \
+    --data '{ "client_id" : "<client_id>", "client_secret" : "<client_secret>" }' \
+    http://localhost:8081/client
+```
+
+### Delete client
+```
+curl -X DELETE \
+    --user <client_id>:<client_secret> \
+    http://localhost:8081/client
+```
