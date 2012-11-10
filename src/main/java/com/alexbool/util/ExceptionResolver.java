@@ -14,7 +14,10 @@ public class ExceptionResolver extends DefaultHandlerExceptionResolver {
             Exception ex)
     {
         try {
-            if (ex instanceof IllegalArgumentException) {
+            if (ex instanceof StatusCodeException) {
+                return handleStatusCode((StatusCodeException) ex, request, response, handler);
+            }
+            else if (ex instanceof IllegalArgumentException) {
                 return handleIllegalArgument((IllegalArgumentException) ex, request, response, handler);
             }
             return super.doResolveException(request, response, handler, ex);
@@ -25,10 +28,21 @@ public class ExceptionResolver extends DefaultHandlerExceptionResolver {
         return null;
     }
 
+    protected ModelAndView handleStatusCode(StatusCodeException ex,
+            HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException
+    {
+        response.setStatus(ex.getStatus().value());
+        return jsonErrorView(ex);
+    }
+
     protected ModelAndView handleIllegalArgument(IllegalArgumentException ex,
             HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException
     {
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        return jsonErrorView(ex);
+    }
+
+    protected ModelAndView jsonErrorView(Exception ex) {
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         view.setExtractValueFromSingleKeyModel(true);
         return new ModelAndView(view, "", new ErrorMessage(ex.getMessage()));
