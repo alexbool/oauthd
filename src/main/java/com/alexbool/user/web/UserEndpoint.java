@@ -25,7 +25,7 @@ public class UserEndpoint {
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void register(@RequestBody RegisterUserCommand cmd) {
         userRepository.save(
-                new User(cmd.getUsername(), cmd.getPassword(), false, Arrays.asList(new String[] { "ROLE_USER" })));
+                new User(cmd.getUsername(), cmd.getPassword(), false, Arrays.asList(new String[] { "user_general" })));
     }
 
     @RequestMapping(value = "check-username-free", method = RequestMethod.GET)

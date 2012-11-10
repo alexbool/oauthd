@@ -26,7 +26,7 @@
 
     <oauth2:client-details-service id="clientDetails">
         <oauth2:client client-id="greenpas-api" authorized-grant-types="authorization_code,refresh_token,implicit,password"
-            secret="123" redirect-uri="http://greenpas.ru" authorities="ROLE_CLIENT" />
+            secret="123" redirect-uri="http://greenpas.ru" authorities="client_general" />
     </oauth2:client-details-service>
 
     <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
@@ -44,7 +44,7 @@
 
     <sec:http pattern="/oauth/authorize" create-session="stateless" authentication-manager-ref="authenticationManager"
         entry-point-ref="forbiddenEntryPoint">
-        <sec:intercept-url pattern="/oauth/authorize" access="ROLE_USER" />
+        <sec:intercept-url pattern="/oauth/authorize" access="IS_AUTHENTICATED_FULLY" />
         <sec:anonymous enabled="false" />
         <!-- Noone is allowed here, because we are not supporting anything except password grant -->
         <!-- <sec:http-basic entry-point-ref="forbiddenEntryPoint" /> -->
