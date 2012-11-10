@@ -32,7 +32,7 @@ curl -X POST \
 
 ### Get user info
 ```
-curl --header "Authorization: Bearer <your token here>" http://localhost:8081/user/info
+curl --header "Authorization: Bearer <your token here>" http://localhost:8081/user
 ```
 
 ### Change password
