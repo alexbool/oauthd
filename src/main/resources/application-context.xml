@@ -67,10 +67,10 @@
         <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
     </sec:http>
 
-    <sec:http pattern="/client/.*" request-matcher="regex" authentication-manager-ref="clientAuthenticationManager"
+    <sec:http pattern="/client.*" request-matcher="regex" authentication-manager-ref="clientAuthenticationManager"
         entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
-        <sec:anonymous enabled="false" />
-        <sec:intercept-url pattern="/client/.*" access="IS_AUTHENTICATED_FULLY" />
+        <sec:intercept-url pattern="/client" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <sec:intercept-url pattern="/client.*" access="IS_AUTHENTICATED_FULLY" />
         <sec:http-basic entry-point-ref="forbiddenEntryPoint" />
     </sec:http>
 </beans>
