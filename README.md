@@ -27,7 +27,7 @@ curl "http://localhost:8081/user/check-username-free?username=<username>"
 curl -X POST \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "username" : "<username>", "password" : "<password>" }' \
-    http://localhost:8081/user/register
+    http://localhost:8081/user
 ```
 
 ### Get user info
