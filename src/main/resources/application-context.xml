@@ -22,13 +22,15 @@
 
     <sec:authentication-manager id="clientAuthenticationManager">
         <sec:authentication-provider user-service-ref="clientDetailsUserService" />
-        <sec:authentication-provider user-service-ref="rootUserService"/>
     </sec:authentication-manager>
 
     <sec:authentication-manager alias="authenticationManager">
         <sec:authentication-provider user-service-ref="userRepository" />
     </sec:authentication-manager>
 
+    <sec:authentication-manager id="adminAuthenticationManager">
+        <sec:authentication-provider user-service-ref="rootUserService"/>
+    </sec:authentication-manager>
     <bean id="clientDetails" class="org.springframework.security.oauth2.provider.JdbcClientDetailsService" c:dataSource-ref="dataSource" />
 
     <bean id="clientDetailsUserService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
@@ -72,9 +74,9 @@
         <sec:custom-filter ref="oauth2ProviderFilter" before="PRE_AUTH_FILTER" />
     </sec:http>
 
-    <sec:http pattern="/client.*" request-matcher="regex" authentication-manager-ref="clientAuthenticationManager"
-        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless" use-expressions="true">
-        <sec:intercept-url pattern="/client.*" access="hasRole('root')" />
+    <sec:http pattern="/client.*" request-matcher="regex" authentication-manager-ref="adminAuthenticationManager"
+        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
+        <sec:intercept-url pattern="/client.*" access="IS_AUTHENTICATED_FULLY" />
         <sec:http-basic entry-point-ref="forbiddenEntryPoint" />
     </sec:http>
 </beans>
