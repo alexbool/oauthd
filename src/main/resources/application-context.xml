@@ -73,9 +73,8 @@
     </sec:http>
 
     <sec:http pattern="/client.*" request-matcher="regex" authentication-manager-ref="clientAuthenticationManager"
-        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
-        <sec:intercept-url pattern="/client" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <sec:intercept-url pattern="/client.*" access="IS_AUTHENTICATED_FULLY" />
+        entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless" use-expressions="true">
+        <sec:intercept-url pattern="/client.*" access="hasRole('root')" />
         <sec:http-basic entry-point-ref="forbiddenEntryPoint" />
     </sec:http>
 </beans>
