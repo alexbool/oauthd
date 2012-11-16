@@ -16,8 +16,13 @@
     <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" c:bindAddress="${server.bind.ip}"
         c:bindPort="${server.bind.port}" />
 
+    <sec:user-service id="rootUserService">
+        <sec:user name="root" password="${root.password}" authorities="root"/>
+    </sec:user-service>
+
     <sec:authentication-manager id="clientAuthenticationManager">
         <sec:authentication-provider user-service-ref="clientDetailsUserService" />
+        <sec:authentication-provider user-service-ref="rootUserService"/>
     </sec:authentication-manager>
 
     <sec:authentication-manager alias="authenticationManager">
