@@ -1,6 +1,5 @@
 package com.alexbool.client.web;
 
-import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,6 +7,7 @@ import org.springframework.security.oauth2.provider.BaseClientDetails;
 import org.springframework.security.oauth2.provider.ClientAlreadyExistsException;
 import org.springframework.security.oauth2.provider.ClientRegistrationService;
 import org.springframework.security.oauth2.provider.NoSuchClientException;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,10 +34,10 @@ public class ClientEndpoint {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(Principal principal) {
+    @RequestMapping(value = "{clientId}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable String clientId) {
         try {
-            clientRegistrationService.removeClientDetails(principal.getName());
+            clientRegistrationService.removeClientDetails(clientId);
         } catch (NoSuchClientException ex) {
         }
     }
