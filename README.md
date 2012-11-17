@@ -52,6 +52,13 @@ curl -X DELETE \
 ```
 
 ## Client Management Services
+Available for `root` user only
+
+### List all clients
+```
+curl http://localhost:8081/client
+```
+
 ### Register new client
 ```
 curl -X POST \
