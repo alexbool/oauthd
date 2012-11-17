@@ -14,6 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
+import com.alexbool.util.AccessControlAllowOriginFilter;
 
 public class JettyFactory implements ApplicationContextAware {
 
@@ -31,6 +32,7 @@ public class JettyFactory implements ApplicationContextAware {
         
         ctx.addFilter(new FilterHolder(new DelegatingFilterProxy("springSecurityFilterChain", applicationContext)), "/*",
                 EnumSet.of(DispatcherType.REQUEST));
+        ctx.addFilter(new FilterHolder(new AccessControlAllowOriginFilter()), "/*", EnumSet.of(DispatcherType.REQUEST));
 
         server.setHandler(ctx);
         return server;
