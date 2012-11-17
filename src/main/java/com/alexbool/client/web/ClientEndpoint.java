@@ -33,7 +33,7 @@ public class ClientEndpoint {
         }
         return result;
     }
-    
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void register(@RequestBody RegisterClientCommand cmd) {
