@@ -47,6 +47,12 @@ public class ClientEndpoint {
         }
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "{clientId}", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable String clientId, @RequestBody UpdateClientCommand cmd) {
+        clientRegistrationService.updateClientSecret(clientId, cmd.getClientSecret());
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "{clientId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String clientId) {
