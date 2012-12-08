@@ -1,13 +1,13 @@
 # Simple OAuth Server
 
 ## Installation
-```
+```shell
 sudo dpkg -i oauthd_1.0.0.deb
 ```
 
 ## OAuth Services
 ### Obtain OAuth access token
-```
+```shell
 curl -X POST \
     --user <client_id>:<client_secret> \
     --data "grant_type=password" \
@@ -18,12 +18,12 @@ curl -X POST \
 
 ## User Management Services
 ### Check if username is free
-```
+```shell
 curl "http://localhost:8081/user/check-username-free?username=<username>"
 ```
 
 ### Register new user
-```
+```shell
 curl -X POST \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "username" : "<username>", "password" : "<password>" }' \
@@ -31,12 +31,12 @@ curl -X POST \
 ```
 
 ### Get user info
-```
+```shell
 curl --header "Authorization: Bearer <your token here>" http://localhost:8081/user
 ```
 
 ### Change password
-```
+```shell
 curl -X PATCH \
     --header "Authorization: Bearer <your token here>" \
     --header "Content-Type: application/json;charset=UTF-8" \
@@ -45,7 +45,7 @@ curl -X PATCH \
 ```
 
 ### Delete user
-```
+```shell
 curl -X DELETE \
     --header "Authorization: Bearer <your token here>" \
     http://localhost:8081/user
@@ -55,12 +55,12 @@ curl -X DELETE \
 Available for `root` user only
 
 ### List all clients
-```
+```shell
 curl http://localhost:8081/client
 ```
 
 ### Register new client
-```
+```shell
 curl -X POST \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "client_id" : "<client_id>", "client_secret" : "<client_secret>" }' \
@@ -68,7 +68,7 @@ curl -X POST \
 ```
 
 ### Update client
-```
+```shell
 curl -X PATCH \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "client_secret" : "<client_secret>" }' \
@@ -76,7 +76,7 @@ curl -X PATCH \
 ```
 
 ### Delete client
-```
+```shell
 curl -X DELETE \
     --user <client_id>:<client_secret> \
     http://localhost:8081/client
