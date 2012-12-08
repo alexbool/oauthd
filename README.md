@@ -67,6 +67,14 @@ curl -X POST \
     http://localhost:8081/client
 ```
 
+### Update client
+```
+curl -X PATCH \
+    --header "Content-Type: application/json;charset=UTF-8" \
+    --data '{ "client_secret" : "<client_secret>" }' \
+    http://localhost:8081/client
+```
+
 ### Delete client
 ```
 curl -X DELETE \
