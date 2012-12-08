@@ -72,7 +72,7 @@ curl -X POST \
 curl -X PATCH \
     --header "Content-Type: application/json;charset=UTF-8" \
     --data '{ "client_secret" : "<client_secret>" }' \
-    http://localhost:8081/client
+    http://localhost:8081/client/<client_id>
 ```
 
 ### Delete client
