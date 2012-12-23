@@ -20,7 +20,7 @@ public class JettyFactory implements ApplicationContextAware {
 
     private WebApplicationContext applicationContext;
     
-    public Server jetty(String bindAddress, int bindPort) {
+    public Server apiJetty(String bindAddress, int bindPort) {
         Server server = new Server(new InetSocketAddress(bindAddress, bindPort));
         ServletContextHandler ctx = new ServletContextHandler(null, "/");
 
