@@ -15,6 +15,8 @@
     <bean id="jettyFactory" class="com.alexbool.support.jetty.JettyFactory" />
     <bean id="apiJetty" factory-bean="jettyFactory" factory-method="apiJetty" c:bindAddress="${server.bind.ip}"
         c:bindPort="${server.bind.port}" />
+    <bean id="adminJetty" factory-bean="jettyFactory" factory-method="adminJetty" c:bindAddress="${admin.bind.ip}"
+        c:bindPort="${admin.bind.port}" />
 
     <sec:user-service id="rootUserService">
         <sec:user name="root" password="${root.password}" authorities="root"/>

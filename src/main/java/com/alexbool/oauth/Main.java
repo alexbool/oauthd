@@ -11,8 +11,11 @@ public class Main {
         ctx.refresh();
         ctx.registerShutdownHook();
         
-        Server jetty = ctx.getBean(Server.class);
-        jetty.start();
-        jetty.join();
+        Server apiJetty = ctx.getBean("apiJetty", Server.class);
+        Server adminJetty = ctx.getBean("adminJetty", Server.class);
+        apiJetty.start();
+        adminJetty.start();
+        apiJetty.join();
+        adminJetty.join();
     }
 }
