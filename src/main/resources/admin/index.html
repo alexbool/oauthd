@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OAuth Administration</title>
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" media="screen">
+</head>
+<body>
+  <div id="app" class="container">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <span class="brand">OAuth Admin</span>
+        <ul id="navbar-links" class="nav">
+          <li class="active"><a href="#home">Home</a></li>
+          <li><a href="#clients">Clients</a></li>
+        </ul>
+        <ul class="nav pull-right">
+            <li id="login-btn"></li>
+        </ul>
+      </div>
+    </div>
+    <div id="main"></div>
+  </div>
+  <!-- Templates -->
+  <script type="text/template" id="tmpl-home">
+    <h1>Hello, world!</h1>
+  </script>
+  <script type="text/template" id="tmpl-clients">
+    <h1>Clients</h1>
+  </script>
+  <script type="text/template" id="tmpl-login-btn">
+    <a id="login-btn-link" href="#">Sign in</a>
+  </script>
+  <script type="text/template" id="tmpl-login-form">
+    <form>
+      <input type="text" id="login-form-username" placeholder="Username">
+      <input type="password" id="login-form-password" placeholder="Password">
+      <button class="btn btn-primary">Sign in</button>
+    </form>
+  </script>
+  <!-- JS -->
+  <!-- Libraries -->
+  <script type="text/javascript" src="lib/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="lib/js/underscore.js"></script>
+  <script type="text/javascript" src="lib/js/backbone.js"></script>
+  <script type="text/javascript" src="lib/js/json2.js"></script>
+  <!-- Components -->
+  <script type="text/javascript" src="js/models/client.js"></script>
+  <script type="text/javascript" src="js/collections/clients.js"></script>
+  <script type="text/javascript" src="js/views/login-form.js"></script>
+  <script type="text/javascript" src="js/views/login-btn.js"></script>
+  <script type="text/javascript" src="js/views/home.js"></script>
+  <script type="text/javascript" src="js/views/clients.js"></script>
+  <script type="text/javascript" src="js/views/app.js"></script>
+  <script type="text/javascript" src="js/routers/router.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
