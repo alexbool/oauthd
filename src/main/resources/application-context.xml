@@ -13,7 +13,7 @@
         location="classpath:application.properties,file:///etc/oauthd/oauthd.properties" />
 
     <bean id="jettyFactory" class="com.alexbool.support.jetty.JettyFactory" />
-    <bean id="jetty" factory-bean="jettyFactory" factory-method="jetty" c:bindAddress="${server.bind.ip}"
+    <bean id="jetty" factory-bean="jettyFactory" factory-method="apiJetty" c:bindAddress="${server.bind.ip}"
         c:bindPort="${server.bind.port}" />
 
     <sec:user-service id="rootUserService">
