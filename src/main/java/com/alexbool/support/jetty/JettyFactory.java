@@ -26,7 +26,7 @@ public class JettyFactory implements ApplicationContextAware {
 
         XmlWebApplicationContext restContext = new XmlWebApplicationContext();
         restContext.setParent(applicationContext);
-        restContext.setConfigLocation("classpath:rest-servlet.xml");
+        restContext.setConfigLocation("classpath:context/rest-servlet.xml");
         ServletHolder restServlet = new ServletHolder("rest", new DispatcherServlet(restContext));
         ctx.addServlet(restServlet, "/*");
         

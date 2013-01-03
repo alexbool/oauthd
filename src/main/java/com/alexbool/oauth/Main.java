@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         try (XmlWebApplicationContext ctx = new XmlWebApplicationContext()) {
-            ctx.setConfigLocation("classpath:application-context.xml");
+            ctx.setConfigLocation("classpath:context/application-context.xml");
             ctx.refresh();
             ctx.registerShutdownHook();
 
