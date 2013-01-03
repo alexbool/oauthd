@@ -34,7 +34,11 @@
     <form>
       <input type="text" id="login-form-username" placeholder="Username">
       <input type="password" id="login-form-password" placeholder="Password">
-      <button class="btn btn-primary">Sign in</button>
+      <button id="login-form-btn-sign-in" class="btn btn-primary">Sign in</button>
+      <span id="login-form-failure" class="hide">
+        <br><br>
+        <span class="text-error">Wrong username/password</span>
+      </span>
     </form>
   </script>
   <!-- JS -->
@@ -47,7 +51,9 @@
   <script type="text/javascript" src="lib/js/json2.js"></script>
   <!-- Components -->
   <script type="text/javascript" src="js/models/client.js"></script>
+  <script type="text/javascript" src="js/models/authentication.js"></script>
   <script type="text/javascript" src="js/collections/clients.js"></script>
+  <script type="text/javascript" src="js/collections/authentication.js"></script>
   <script type="text/javascript" src="js/views/login-form.js"></script>
   <script type="text/javascript" src="js/views/login-btn.js"></script>
   <script type="text/javascript" src="js/views/home.js"></script>
