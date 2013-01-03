@@ -7,10 +7,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+    <import resource="classpath:context/properties-context.xml" />
     <import resource="classpath:context/jdbc-context.xml" />
-
-    <context:property-placeholder ignore-resource-not-found="true" system-properties-mode="OVERRIDE"
-        location="classpath:application.properties,file:///etc/oauthd/oauthd.properties" />
 
     <bean id="jettyFactory" class="com.alexbool.support.jetty.JettyFactory" />
     <bean id="apiJetty" factory-bean="jettyFactory" factory-method="apiJetty" c:bindAddress="${server.bind.ip}"
