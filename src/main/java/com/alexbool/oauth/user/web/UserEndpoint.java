@@ -1,4 +1,4 @@
-package com.alexbool.user.web;
+package com.alexbool.oauth.user.web;
 
 import java.security.Principal;
 import java.util.Arrays;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.alexbool.user.User;
-import com.alexbool.user.UserRepository;
+import com.alexbool.oauth.user.User;
+import com.alexbool.oauth.user.UserRepository;
 
 @RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserEndpoint {

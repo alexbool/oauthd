@@ -1,4 +1,4 @@
-package com.alexbool.util;
+package com.alexbool.oauth.util;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,4 +1,4 @@
-package com.alexbool.support.jetty;
+package com.alexbool.oauth.support.jetty;
 
 import java.net.InetSocketAddress;
 import java.util.EnumSet;
@@ -14,7 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
-import com.alexbool.util.AccessControlAllowOriginFilter;
+import com.alexbool.oauth.util.AccessControlAllowOriginFilter;
 
 public class JettyFactory implements ApplicationContextAware {
 

@@ -25,8 +25,8 @@
         <property name="useTrailingSlashMatch" value="true" />
     </bean>
 
-    <bean class="com.alexbool.util.ExceptionResolver" />
+    <bean class="com.alexbool.oauth.util.ExceptionResolver" />
 
-    <bean class="com.alexbool.user.web.UserEndpoint" />
-    <bean class="com.alexbool.client.web.ClientEndpoint" />
+    <bean class="com.alexbool.oauth.user.web.UserEndpoint" />
+    <bean class="com.alexbool.oauth.client.web.ClientEndpoint" />
 </beans>

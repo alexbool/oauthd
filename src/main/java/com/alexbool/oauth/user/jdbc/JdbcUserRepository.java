@@ -1,4 +1,4 @@
-package com.alexbool.user.jdbc;
+package com.alexbool.oauth.user.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +11,9 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.alexbool.user.User;
-import com.alexbool.user.UserRepository;
-import com.alexbool.user.UsernameAlreadyExistsException;
+import com.alexbool.oauth.user.User;
+import com.alexbool.oauth.user.UserRepository;
+import com.alexbool.oauth.user.UsernameAlreadyExistsException;
 
 public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository {
 

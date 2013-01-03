@@ -1,4 +1,4 @@
-package com.alexbool.client.web;
+package com.alexbool.oauth.client.web;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import com.alexbool.util.StatusCodeException;
+import com.alexbool.oauth.util.StatusCodeException;
 
 @RequestMapping(value = "client", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientEndpoint {

@@ -1,4 +1,4 @@
-package com.alexbool.user.web;
+package com.alexbool.oauth.user.web;
 
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;

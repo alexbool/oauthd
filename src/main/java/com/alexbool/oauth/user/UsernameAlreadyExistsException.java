@@ -1,4 +1,4 @@
-package com.alexbool.user;
+package com.alexbool.oauth.user;
 
 public class UsernameAlreadyExistsException extends IllegalArgumentException {
 

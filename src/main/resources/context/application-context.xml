@@ -10,7 +10,7 @@
     <import resource="classpath:context/properties-context.xml" />
     <import resource="classpath:context/jdbc-context.xml" />
 
-    <bean id="jettyFactory" class="com.alexbool.support.jetty.JettyFactory" />
+    <bean id="jettyFactory" class="com.alexbool.oauth.support.jetty.JettyFactory" />
     <bean id="apiJetty" factory-bean="jettyFactory" factory-method="apiJetty" c:bindAddress="${server.bind.ip}"
         c:bindPort="${server.bind.port}" />
 

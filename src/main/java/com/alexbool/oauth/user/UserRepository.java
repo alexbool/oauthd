@@ -1,4 +1,4 @@
-package com.alexbool.user;
+package com.alexbool.oauth.user;
 
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;

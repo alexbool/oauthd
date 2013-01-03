@@ -1,4 +1,4 @@
-package com.alexbool.util.jdbc;
+package com.alexbool.oauth.util.jdbc;
 
 import java.io.IOException;
 import java.util.Scanner;

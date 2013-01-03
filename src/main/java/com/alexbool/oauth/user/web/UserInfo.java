@@ -1,4 +1,4 @@
-package com.alexbool.user.web;
+package com.alexbool.oauth.user.web;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.alexbool.util;
+package com.alexbool.oauth.util;
 
 public class ErrorMessage {
 
