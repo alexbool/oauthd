@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.jdbc.JdbcTestUtils;
 import com.alexbool.oauth.test.AbstractJdbcDaoTest;
 import com.alexbool.oauth.user.User;
@@ -58,11 +59,11 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
         assertTrue(auth.contains(new SimpleGrantedAuthority("trololo")));
     }
 
-    @Test
+    @Test(expected = UsernameNotFoundException.class)
     public void delete() {
         insert();
         userRepository.delete("user");
-        assertNull(userRepository.loadUserByUsername("user"));
+        userRepository.loadUserByUsername("user");
     }
 
     private void insert() {

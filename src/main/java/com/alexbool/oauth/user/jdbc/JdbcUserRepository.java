@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,19 +30,19 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user = getJdbcTemplate().queryForObject("SELECT * FROM users WHERE username = ?",
-                new RowMapper<UserDetails>() {
-                    @Override
-                    public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new User(rs.getString("username"), rs.getString("password"), rs.getBoolean("deleted"),
-                                Arrays.asList(rs.getString("authorities").split(",")));
-                    }
-                }, username);
-
-        if (user == null) {
+        UserDetails user;
+        try {
+            user = getJdbcTemplate().queryForObject("SELECT * FROM users WHERE username = ?",
+                    new RowMapper<UserDetails>() {
+                        @Override
+                        public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+                            return new User(rs.getString("username"), rs.getString("password"),
+                                    rs.getBoolean("deleted"), Arrays.asList(rs.getString("authorities").split(",")));
+                        }
+                    }, username);
+        } catch (EmptyResultDataAccessException e) {
             throw new UsernameNotFoundException(String.format("User %s not found", username));
         }
-
         return user;
     }
 
