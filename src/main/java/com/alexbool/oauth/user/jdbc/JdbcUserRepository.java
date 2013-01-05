@@ -15,6 +15,11 @@ import com.alexbool.oauth.user.User;
 import com.alexbool.oauth.user.UserRepository;
 import com.alexbool.oauth.user.UsernameAlreadyExistsException;
 
+/**
+ * JDBC implementation of {@link UserRepository}.
+ * 
+ * @author Alexander Bulaev
+ */
 public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository {
 
     @Override
