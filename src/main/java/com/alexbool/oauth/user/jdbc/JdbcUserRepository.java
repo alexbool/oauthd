@@ -64,7 +64,7 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
 
     @Override
     public void saveAuthorities(String username, Collection<? extends GrantedAuthority> authorities) {
-        getJdbcTemplate().update("UPDATE users SET password = ? WHERE username = ?",
+        getJdbcTemplate().update("UPDATE users SET authorities = ? WHERE username = ?",
                 joinAuthorities(authorities), username);
     }
 
