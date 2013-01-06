@@ -8,8 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class User implements UserDetails {
-    
-    private static final long serialVersionUID = -3066380991869635502L;
 
     private final String username;
     private final String password;
