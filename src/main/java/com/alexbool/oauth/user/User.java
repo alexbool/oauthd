@@ -25,7 +25,7 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.deleted = deleted;
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String authority : authorities) {
             grantedAuthorities.add(new SimpleGrantedAuthority(authority));
         }
