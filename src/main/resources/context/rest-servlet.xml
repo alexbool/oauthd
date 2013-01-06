@@ -12,13 +12,13 @@
 
     <oauth2:authorization-server client-details-service-ref="clientDetails"
         token-services-ref="tokenServices" user-approval-handler-ref="userApprovalHandler">
-        <!-- We only implement resource owner credentials flow -->
-        <oauth2:password authentication-manager-ref="authenticationManager" />
-        <!-- Other flows can be added though -->
         <!-- <oauth2:authorization-code authorization-code-services-ref="authorizationCodeServices" /> -->
         <!-- <oauth2:refresh-token /> -->
         <!-- <oauth2:implicit /> -->
         <!-- <oauth2:client-credentials /> -->
+        <!-- We only implement resource owner credentials flow -->
+        <!-- Other flows can be added though -->
+        <oauth2:password authentication-manager-ref="authenticationManager" />
     </oauth2:authorization-server>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
