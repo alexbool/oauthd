@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
 
+import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ import com.alexbool.oauth.user.UsernameAlreadyExistsException;
  */
 public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
 
-    private static final User USER = new User(UUID.randomUUID(), "user", "changeme", false, Arrays.asList("user"));
+    private static final User USER = new User(UUID.randomUUID(), Optional.of("user"), "changeme", false,
+            Arrays.asList("user"));
 
     @Autowired
     private UserRepository userRepository;

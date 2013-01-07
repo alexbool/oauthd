@@ -1,12 +1,12 @@
 -- User details
 CREATE TABLE users (
     uid         BINARY(16)      NOT NULL PRIMARY KEY,
-    username    VARCHAR(256)    NOT NULL,
+    login       VARCHAR(256),
     password    VARCHAR(256)    NOT NULL,
     authorities VARCHAR(1024)   NOT NULL,
     deleted     TINYINT,
 
-    UNIQUE (username)
+    UNIQUE (login)
 );
 
 -- Client details

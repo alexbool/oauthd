@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface UserRepository extends UserDetailsService {
 
-    boolean exists(String username);
+    boolean exists(String login);
     void save(User user);
-    void updatePassword(String username, String password);
-    void saveAuthorities(String username, Collection<? extends GrantedAuthority> authorities);
-    void delete(String username);
+    void updatePassword(String login, String password);
+    void saveAuthorities(String login, Collection<? extends GrantedAuthority> authorities);
+    void delete(String login);
 }

@@ -2,6 +2,8 @@ package com.alexbool.oauth.user;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.common.base.Optional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +17,7 @@ public class InMemoryUserRepository implements UserRepository {
 
     public InMemoryUserRepository(Collection<? extends User> users) {
         for (User user : users) {
-            this.users.put(user.getUsername(), user);
+            this.users.put(user.getLogin().get(), user);
         }
     }
 
@@ -38,28 +40,28 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public void updatePassword(String username, String password) {
-        User user = findOrThrow(username);
-        User newUser = new User(user.getUid(), username, password, !user.isEnabled(), user.getAuthorities());
-        users.put(username, newUser);
+    public void updatePassword(String login, String password) {
+        User user = findOrThrow(login);
+        User newUser = new User(user.getUid(), Optional.of(login), password, !user.isEnabled(), user.getAuthorities());
+        users.put(login, newUser);
     }
 
     @Override
-    public void saveAuthorities(String username, Collection<? extends GrantedAuthority> authorities) {
-        User user = findOrThrow(username);
-        User newUser = new User(user.getUid(), username, user.getPassword(), !user.isEnabled(), authorities);
-        users.put(username, newUser);
+    public void saveAuthorities(String login, Collection<? extends GrantedAuthority> authorities) {
+        User user = findOrThrow(login);
+        User newUser = new User(user.getUid(), Optional.of(login), user.getPassword(), !user.isEnabled(), authorities);
+        users.put(login, newUser);
     }
 
     @Override
-    public void delete(String username) {
-        users.remove(username);
+    public void delete(String login) {
+        users.remove(login);
     }
 
-    private User findOrThrow(String username) {
-        User user = users.get(username);
+    private User findOrThrow(String login) {
+        User user = users.get(login);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User %s not found", username));
+            throw new UsernameNotFoundException(String.format("User %s not found", login));
         }
         return user;
     }
