@@ -11,22 +11,22 @@ sudo dpkg -i oauthd_1.0.0.deb
 curl -X POST \
     --user <client_id>:<client_secret> \
     --data "grant_type=password" \
-    --data "username=<username>" \
+    --data "username=<login>" \
     --data "password=<password>" \
     http://localhost:8081/oauth/token
 ```
 
 ## User Management Services
-### Check if username is free
+### Check if login is free
 ```shell
-curl "http://localhost:8081/user/check-username-free?username=<username>"
+curl "http://localhost:8081/user/check-login-free?login=<login>"
 ```
 
 ### Register new user
 ```shell
 curl -X POST \
     --header "Content-Type: application/json;charset=UTF-8" \
-    --data '{ "username" : "<username>", "password" : "<password>" }' \
+    --data '{ "login" : "<login>", "password" : "<password>" }' \
     http://localhost:8081/user
 ```
 
