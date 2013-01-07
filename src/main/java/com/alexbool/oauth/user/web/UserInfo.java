@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import com.google.common.base.Optional;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
@@ -16,12 +17,12 @@ import org.springframework.security.core.GrantedAuthority;
 public class UserInfo {
 
     private final UUID uid;
-    private final String username;
+    private final Optional<String> login;
     private final List<String> authorities;
 
-    public UserInfo(UUID uid, String username, Collection<? extends GrantedAuthority> authorities) {
+    public UserInfo(UUID uid, Optional<String> login, Collection<? extends GrantedAuthority> authorities) {
         this.uid = uid;
-        this.username = username;
+        this.login = login;
         List<String> authorityNames = new ArrayList<String>();
         for (GrantedAuthority authority : authorities) {
             authorityNames.add(authority.getAuthority());
@@ -33,8 +34,8 @@ public class UserInfo {
         return uid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login.orNull();
     }
 
     public List<String> getAuthorities() {

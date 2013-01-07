@@ -40,7 +40,7 @@ public class UserEndpoint {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody UserInfo userInfo(User user) {
-        return new UserInfo(user.getUid(), user.getUsername(), user.getAuthorities());
+        return new UserInfo(user.getUid(), user.getLogin(), user.getAuthorities());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
