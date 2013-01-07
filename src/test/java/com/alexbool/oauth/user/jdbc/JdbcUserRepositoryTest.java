@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
 
+import com.alexbool.oauth.user.LoginAlreadyExistsException;
 import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,6 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 import com.alexbool.oauth.test.AbstractJdbcDaoTest;
 import com.alexbool.oauth.user.User;
 import com.alexbool.oauth.user.UserRepository;
-import com.alexbool.oauth.user.UsernameAlreadyExistsException;
 
 /**
  * @author Alexander Bulaev
@@ -34,7 +34,7 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
         JdbcTestUtils.deleteFromTables(getJdbcTemplate(), "users");
     }
 
-    @Test(expected = UsernameAlreadyExistsException.class)
+    @Test(expected = LoginAlreadyExistsException.class)
     public void saveDuplicate() {
         insert();
         insert();

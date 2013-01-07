@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.UUID;
 
+import com.alexbool.oauth.user.LoginAlreadyExistsException;
 import com.google.common.base.Optional;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.alexbool.oauth.user.User;
 import com.alexbool.oauth.user.UserRepository;
-import com.alexbool.oauth.user.UsernameAlreadyExistsException;
 
 /**
  * JDBC implementation of {@link UserRepository}.
@@ -61,7 +61,7 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
                     joinAuthorities(user.getAuthorities()), !user.isEnabled());
         }
         catch (DuplicateKeyException ex) {
-            throw new UsernameAlreadyExistsException(user.getUsername());
+            throw new LoginAlreadyExistsException(user.getLogin().get());
         }
     }
 
