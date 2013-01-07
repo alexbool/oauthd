@@ -33,7 +33,7 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
     }
 
     @Test(expected = UsernameAlreadyExistsException.class)
-    public void save() {
+    public void saveDuplicate() {
         insert();
         insert();
     }
