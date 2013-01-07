@@ -39,6 +39,13 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
     }
 
     @Test
+    public void save() {
+        insert();
+        User user = (User) userRepository.loadUserByUsername("user");
+        assertEquals(USER.getUid(), user.getUid());
+    }
+
+    @Test
     public void exists() {
         assertFalse(userRepository.exists("user"));
         insert();
