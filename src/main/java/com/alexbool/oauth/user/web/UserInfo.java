@@ -23,7 +23,7 @@ public class UserInfo {
     public UserInfo(UUID uid, Optional<String> login, Collection<? extends GrantedAuthority> authorities) {
         this.uid = uid;
         this.login = login;
-        List<String> authorityNames = new ArrayList<String>();
+        List<String> authorityNames = new ArrayList<>();
         for (GrantedAuthority authority : authorities) {
             authorityNames.add(authority.getAuthority());
         }
