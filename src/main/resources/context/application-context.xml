@@ -37,6 +37,7 @@
     <bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
         <property name="tokenStore" ref="tokenStore" />
         <property name="supportRefreshToken" value="true" />
+        <property name="accessTokenValiditySeconds" value="${oauth.access.token.validity.seconds}" />
     </bean>
 
     <bean id="forbiddenEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
