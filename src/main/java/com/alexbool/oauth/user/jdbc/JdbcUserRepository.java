@@ -33,7 +33,7 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         UserDetails user;
         try {
             user = getJdbcTemplate().queryForObject("SELECT * FROM users WHERE login = ?",
@@ -45,9 +45,9 @@ public class JdbcUserRepository extends JdbcDaoSupport implements UserRepository
                                     rs.getString("password"), rs.getBoolean("deleted"),
                                     Arrays.asList(rs.getString("authorities").split(",")));
                         }
-                    }, username);
+                    }, login);
         } catch (EmptyResultDataAccessException e) {
-            throw new UsernameNotFoundException(String.format("User %s not found", username));
+            throw new UsernameNotFoundException(String.format("User %s not found", login));
         }
         return user;
     }
