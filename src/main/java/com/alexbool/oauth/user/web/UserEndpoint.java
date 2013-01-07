@@ -31,11 +31,11 @@ public class UserEndpoint {
                         Arrays.asList("user_general")));
     }
 
-    @RequestMapping(value = "check-username-free", method = RequestMethod.GET)
-    public @ResponseBody CheckResult checkUsernameFree(
-            @RequestParam(required = true) String username)
+    @RequestMapping(value = "check-login-free", method = RequestMethod.GET)
+    public @ResponseBody CheckResult checkLoginFree(
+            @RequestParam(required = true) String login)
     {
-        return new CheckResult(!userRepository.exists(username));
+        return new CheckResult(!userRepository.exists(login));
     }
 
     @RequestMapping(method = RequestMethod.GET)
