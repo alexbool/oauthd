@@ -27,7 +27,7 @@ public class UserEndpoint {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void register(@RequestBody RegisterUserCommand cmd) {
         userRepository.save(
-                new User(UUID.randomUUID(), Optional.of(cmd.getUsername()), cmd.getPassword(), false,
+                new User(UUID.randomUUID(), Optional.of(cmd.getLogin()), cmd.getPassword(), false,
                         Arrays.asList("user_general")));
     }
 
