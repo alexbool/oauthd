@@ -4,6 +4,11 @@ import java.util.*;
 
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * DTO class used as token validation endpoint response.
+ *
+ * @author Alexander Bulaev
+ */
 public class UserInfo {
 
     private final UUID uid;
