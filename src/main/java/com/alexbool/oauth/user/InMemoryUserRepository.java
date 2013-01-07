@@ -8,13 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class InMemoryUserRepository implements UserRepository {
 
-    private ConcurrentHashMap<String, UserDetails> users = new ConcurrentHashMap<String, UserDetails>();
+    private ConcurrentHashMap<String, User> users = new ConcurrentHashMap<String, User>();
 
     public InMemoryUserRepository() {
     }
 
-    public InMemoryUserRepository(Collection<? extends UserDetails> users) {
-        for (UserDetails user : users) {
+    public InMemoryUserRepository(Collection<? extends User> users) {
+        for (User user : users) {
             this.users.put(user.getUsername(), user);
         }
     }
@@ -30,7 +30,7 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public void save(UserDetails user) {
+    public void save(User user) {
         if (users.containsKey(user.getUsername())) {
             throw new UsernameAlreadyExistsException(user.getUsername());
         }
@@ -39,15 +39,15 @@ public class InMemoryUserRepository implements UserRepository {
 
     @Override
     public void updatePassword(String username, String password) {
-        UserDetails user = findOrThrow(username);
-        UserDetails newUser = new User(username, password, !user.isEnabled(), user.getAuthorities());
+        User user = findOrThrow(username);
+        User newUser = new User(user.getUid(), username, password, !user.isEnabled(), user.getAuthorities());
         users.put(username, newUser);
     }
 
     @Override
     public void saveAuthorities(String username, Collection<? extends GrantedAuthority> authorities) {
-        UserDetails user = findOrThrow(username);
-        UserDetails newUser = new User(username, user.getPassword(), !user.isEnabled(), authorities);
+        User user = findOrThrow(username);
+        User newUser = new User(user.getUid(), username, user.getPassword(), !user.isEnabled(), authorities);
         users.put(username, newUser);
     }
 
@@ -56,8 +56,8 @@ public class InMemoryUserRepository implements UserRepository {
         users.remove(username);
     }
 
-    private UserDetails findOrThrow(String username) {
-        UserDetails user = users.get(username);
+    private User findOrThrow(String username) {
+        User user = users.get(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User %s not found", username));
         }

@@ -2,6 +2,8 @@ package com.alexbool.oauth.user.web;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +27,7 @@ public class UserEndpoint {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void register(@RequestBody RegisterUserCommand cmd) {
         userRepository.save(
-                new User(cmd.getUsername(), cmd.getPassword(), false, Arrays.asList("user_general")));
+                new User(UUID.randomUUID(), cmd.getUsername(), cmd.getPassword(), false, Arrays.asList("user_general")));
     }
 
     @RequestMapping(value = "check-username-free", method = RequestMethod.GET)
