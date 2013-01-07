@@ -65,7 +65,7 @@
 
     <oauth2:resource-server id="oauth2ProviderFilter" token-services-ref="tokenServices" />
 
-    <sec:http pattern="/user(?!(/check-username-free))(/.*)?" request-matcher="regex"
+    <sec:http pattern="/user(?!(/check-login-free))(/.*)?" request-matcher="regex"
         entry-point-ref="oauthAuthenticationEntryPoint" create-session="stateless">
         <sec:intercept-url pattern="/user" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <sec:intercept-url pattern="/user.*" access="IS_AUTHENTICATED_FULLY" />
