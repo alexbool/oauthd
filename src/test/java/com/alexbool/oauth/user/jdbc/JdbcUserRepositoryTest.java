@@ -22,7 +22,7 @@ import com.alexbool.oauth.user.UsernameAlreadyExistsException;
  */
 public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
 
-    private static final UUID UID = UUID.randomUUID();
+    private static final User USER = new User(UUID.randomUUID(), "user", "changeme", false, Arrays.asList("user"));
 
     @Autowired
     private UserRepository userRepository;
@@ -71,6 +71,6 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
     }
 
     private void insert() {
-        userRepository.save(new User(UID, "user", "changeme", false, Arrays.asList("user")));
+        userRepository.save(USER);
     }
 }
