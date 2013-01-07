@@ -39,8 +39,8 @@ public class UserEndpoint {
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody UserInfo userInfo(Principal principal) {
-        Authentication auth = (Authentication) principal;
-        return new UserInfo(auth.getName(), auth.getAuthorities());
+        User auth = (User) ((Authentication) principal).getPrincipal();
+        return new UserInfo(auth.getUid(), auth.getUsername(), auth.getAuthorities());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
