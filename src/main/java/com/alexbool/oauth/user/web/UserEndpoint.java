@@ -1,6 +1,5 @@
 package com.alexbool.oauth.user.web;
 
-import java.security.Principal;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -8,6 +7,7 @@ import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,13 +45,15 @@ public class UserEndpoint {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void changePassword(@RequestBody ChangePasswordCommand cmd, Principal principal) {
-        userRepository.updatePassword(principal.getName(), cmd.getPassword());
+    public void changePassword(@RequestBody ChangePasswordCommand cmd, User user) {
+        Assert.isTrue(user.getLogin().isPresent(), "Only users with login can update his/her password");
+        userRepository.updatePassword(user.getLogin().get(), cmd.getPassword());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(Principal principal) {
-        userRepository.delete(principal.getName());
+    public void delete(User user) {
+        Assert.isTrue(user.getLogin().isPresent(), "Only users with login can delete his/her account");
+        userRepository.delete(user.getLogin().get());
     }
 }
