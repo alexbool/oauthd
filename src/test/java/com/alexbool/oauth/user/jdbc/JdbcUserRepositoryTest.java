@@ -40,6 +40,13 @@ public class JdbcUserRepositoryTest extends AbstractJdbcDaoTest {
         insert();
     }
 
+    @Test(expected = LoginAlreadyExistsException.class)
+    public void saveDuplicateLogin() {
+        insert();
+        userRepository.save(new User(UUID.randomUUID(), USER.getLogin(), USER.getPassword(), !USER.isAccountNonLocked(),
+                USER.getAuthorities()));
+    }
+
     @Test
     public void save() {
         insert();
