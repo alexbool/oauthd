@@ -22,7 +22,7 @@ CREATE TABLE oauth_client_details (
 
 -- Access tokens
 CREATE TABLE oauth_access_token (
-    token_id VARCHAR(256),
+    token_id VARCHAR(256) PRIMARY KEY,
     token LONGVARBINARY,
     authentication_id VARCHAR(256),
     user_name VARCHAR(256),
@@ -33,7 +33,7 @@ CREATE TABLE oauth_access_token (
 
 -- Refresh tokens
 CREATE TABLE oauth_refresh_token (
-    token_id VARCHAR(256),
+    token_id VARCHAR(256) PRIMARY KEY,
     token LONGVARBINARY,
     authentication LONGVARBINARY
 );
